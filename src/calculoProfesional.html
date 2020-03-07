@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Calculadora de impuestos</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Calculadora||</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="index.html">Cálculo de arrendamiento </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="calculoISR.html">Cálculo de ISR</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="calculoProfesional.html">Cálculo servicio Profesional</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IVAdesglosado.html">IVA desglosado</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <form action="" id="form">
+                    <button class="btn btn-primary btn-lg">Enviar</button>
+                    <div class="form-group">
+                        <label for="subtotal">neeeeeeeeeee</label>
+                        <input class="form-control" type="number" id="subtotal" placeholder="Ingresar cantidad" step="0.01" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="IVA">IVA 16%</label>
+                        <input class="form-control" type="number" id="IVA" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="total">Total</label>
+                        <input class="form-control" type="number" id="total" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="ISRret">ISR retención</label>
+                        <input class="form-control" type="number" id="ISRret" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="IVAret">IVA retención</label>
+                        <input class="form-control" type="number" id="IVAret" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="neto">Neto</label>
+                        <input class="form-control" type="number" id="neto" readonly step="0.01">
+                    </div>
+                </form>
+                <button class="btn btn-primary btn-lg" id="inverso">Inverso</button>
+            </div>
+            <div class="col-md-8">
+                <table class="table table-striped table-bordered" id="principal">
+                    <thead>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>IVA</th>
+                        <th>Total</th>
+                        <th>ISR retención</th>
+                        <th>IVA retención</th>
+                        <th>Neto</th>
+                        <th>Opción</th>
+                    </thead>
+                    <tbody >
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+
+    </div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="app2.js"></script>
+</body>
+</html>

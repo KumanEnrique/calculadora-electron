@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css">
+    <title>Calculadora de impuestos</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Calculadora||</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Cálculo de arrendamiento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calculoISR.html">Cálculo de ISR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calculoProfesional.html">Cálculo servicio Profesional</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IVAdesglosado.html">IVA desglosado</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <form action="" id="form">
+                    <button id="addRow" class="btn btn-primary btn-lg">Insertar</button>
+                    <div class="form-group">
+                        <label for="subtotal">Subtotal</label>
+                        <input class="form-control" type="number" id="subtotal" placeholder="Ingresar cantidad" step="0.01" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="IVA">IVA 16%</label>
+                        <input class="form-control" type="number" id="IVA" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="total">Total</label>
+                        <input class="form-control" type="number" id="total" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="ISRret">ISR retención</label>
+                        <input class="form-control" type="number" id="ISRret" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="IVAret">IVA retención</label>
+                        <input class="form-control" type="number" id="IVAret" readonly step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="neto">Neto</label>
+                        <input class="form-control" type="number" id="neto" readonly step="0.01">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <table class="display nowrap table table-bordered " style="width:100%" id="tabla">
+                    <thead>
+                        <th>Subtotal</th>
+                        <th>IVA</th>
+                        <th>Total</th>
+                        <th>ISR retención</th>
+                        <th>IVA retención</th>
+                        <th>Neto</th>
+                        <th>Opción</th>
+                    </thead>
+                    <tbody >
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Inverso
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Inverso</h5>
+                </div>
+                <div class="modal-body">
+                  <input type="number" name="" id="inversoINPUT">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="DataTables/Buttons-1.6.1/js/buttons.flash.min.js"></script>
+    <script src="DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+    <script src="DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
+    <script>
+        /* $(document).ready(function () {
+            $('#tabla').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "No hay datos en la tabla",
+                    "info":           "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty":      "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Show _MENU_ entries",
+                    "loadingRecords": "Cargando...",
+                    "processing":     "Procesando...",
+                    "search":         "Buscar:",
+                    "zeroRecords":    "Ninguna coincidencia encontrada",
+                    "paginate": {
+                        "first":      "Primero",
+                        "last":       "Ultimo",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":  ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+            });
+        }); */
+    </script>
+
+    <script src="app.js"></script>
+</body>
+</html>
