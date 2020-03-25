@@ -98,7 +98,7 @@ ivaInicial.addEventListener("keyup", (e) => {
 })
 totalForm2.addEventListener("keyup",(e)=>{
   const ingreso = Number(e.target.value)
-  afecto.value = - Number(tempValor) + ingreso
+  afecto.value = Math.abs(Number(tempValor) - ingreso)
 })
 form2.addEventListener("submit", (e) => {
   e.preventDefault();
